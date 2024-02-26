@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const PORT = 5000;
@@ -11,7 +12,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://triantoaldyansyah:lnev4QhTaBZienJF@testing-dev.cfkuq6y.mongodb.net/?retryWrites=true&w=majority&appName=testing-dev', {
+const mongo_uri=process.env.MONGO_URI;
+mongoose.connect(mongo_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('MongoDB connected'))
