@@ -24,7 +24,7 @@ mongoose.connect(mongo_uri, {
 // Define Schema and Models using Mongoose
 const patientSchema = new mongoose.Schema({
   patientName: String,
-  patientID: String,
+  patientId: String,
   dateOfTreatment: Date,
   treatmentDescription: [String],
   medicationsPrescribed: [String],
@@ -36,6 +36,7 @@ const Patient = mongoose.model('Patient', patientSchema);
 // Define API endpoints
 app.post('/api/patients', async (req, res) => {
   try {
+    console.log(req.body);
     const newPatient = new Patient(req.body);
     await newPatient.save();
     res.status(201).json(newPatient);
